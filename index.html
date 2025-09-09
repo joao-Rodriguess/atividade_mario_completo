@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROMARIO</title>
+    <link rel="stylesheet" href="_css/style.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="_imagens/senai.png" type="image/x-icon">
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio autoplay loop repeat id="troca" src="_media/sounds/mario.mp3" type="audio/mp3"></audio>
+    <div class="game-board">
+        <div class="tela_inicio">
+            <img src="_imagens/senai.png" width="500px" height="400px" class="logo_senai"><br>
+            <button onclick="iniciarGame()" class="start-button">Start Game</button>
+            <select id="character-select" onchange="mudarPersonagem()" class="character-select">
+                <option value="">Personagens</option>
+                <option value="mario">Mario</option>
+                <option value="sonic">Sonic</option>
+                <option value="pikachu">Pikachu</option>
+            </select>
+            <div class="personagem">
+                <img src="/_media/gifs-startscreen/marioDancando.gif" id="personagem-sel" class="personagem-sel">
+            </div>
+        </div>
+        <div class="div-continuar">
+            <p>Continuar?</p>
+            <button onclick="tiraVida()">Sim</button>
+            <button onclick="window.location.reload()">Não</button>
+        </div>
+        <div class="info-board">
+            <div class="scores">
+                <span id="pontos" style="color: white;">0</span>
+            </div>
+            <div class="lifes">
+                <img src="_media/corazon-pixel.gif" class="heart">
+                <img src="_media/corazon-pixel.gif" class="heart1">
+                <img src="_media/corazon-pixel.gif" class="heart2">
+            </div>
+        </div>
+        <img src="_imagens/clouds.png" class="clouds">
+        <img src="_media/pretin.gif" class="pretin" id="pretin">
+        <img src="_media/luta_epica.gif" class="goku_golpes">
+        <img src="_media/dragonair.gif" class="dragonair">
+        <img src="_media/dragon.gif" class="dragon">
+        <img src="_media/goku.gif" class="goku">
+        <img src="_media/gifs-principais/mario.gif" class="mario">
+        <img src="_imagens/pipe.png" class="pipe">
+        <img src="_imagens/coin.png" class="coin">
+        <div class="sky-stars">
+            <img src="_imagens/stars2.png" class="stars">
+            <img src="_imagens/stars2.png" class="stars">
+            <img src="_imagens/stars2.png" class="stars">
+        </div>
+    </div>
+
+</body>
+<script src="_javascript/script.js" defer></script>
+</html>
