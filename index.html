@@ -15,52 +15,113 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <audio autoplay loop repeat id="troca" src="_media/sounds/mario.mp3" type="audio/mp3"></audio>
+    <audio autoplay loop id="troca" src="_media/sounds/mario.mp3" type="audio/mp3"></audio>
     <div class="game-board">
+        <!-- Tela de Início Premium (Glassmorphism) -->
         <div class="tela_inicio">
-            <img src="_imagens/senai.png" width="500px" height="400px" class="logo_senai"><br>
-            <button onclick="iniciarGame()" class="start-button">Start Game</button>
-            <select id="character-select" onchange="mudarPersonagem()" class="character-select">
-                <option value="">Personagens</option>
-                <option value="mario">Mario</option>
-                <option value="sonic">Sonic</option>
-                <option value="pikachu">Pikachu</option>
-            </select>
-            <div class="personagem">
-                <img src="/_media/gifs-startscreen/marioDancando.gif" id="personagem-sel" class="personagem-sel">
+            <div class="logo-container">
+                <img src="_imagens/senai.png" class="logo_senai" alt="Logo SENAI">
+            </div>
+            
+            <h1 class="game-title">MUNDO DOS DESAFIOS</h1>
+            
+            <!-- Cards de Seleção de Personagem -->
+            <div class="character-selection-container">
+                <p class="select-subtitle">Escolha seu Herói:</p>
+                <div class="character-grid">
+                    <div class="char-card selected" data-char="mario" onclick="selecionarPersonagem('mario')">
+                        <div class="char-gif-wrapper">
+                            <img src="_media/gifs-startscreen/marioDancando.gif" class="char-card-gif" alt="Mario">
+                        </div>
+                        <span class="char-name">MARIO</span>
+                    </div>
+                    <div class="char-card" data-char="luigi" onclick="selecionarPersonagem('luigi')">
+                        <div class="char-gif-wrapper">
+                            <img src="_media/gifs-startscreen/luigi_dance.gif" class="char-card-gif" alt="Luigi">
+                        </div>
+                        <span class="char-name">LUIGI</span>
+                    </div>
+                    <div class="char-card" data-char="sonic" onclick="selecionarPersonagem('sonic')">
+                        <div class="char-gif-wrapper">
+                            <img src="_media/gifs-startscreen/sonic_dance.gif" class="char-card-gif" alt="Sonic">
+                        </div>
+                        <span class="char-name">SONIC</span>
+                    </div>
+                    <div class="char-card" data-char="pikachu" onclick="selecionarPersonagem('pikachu')">
+                        <div class="char-gif-wrapper">
+                            <img src="_media/gifs-startscreen/pikachu_parado.gif" class="char-card-gif" alt="Pikachu">
+                        </div>
+                        <span class="char-name">PIKACHU</span>
+                    </div>
+                    <div class="char-card" data-char="yoshi" onclick="selecionarPersonagem('yoshi')">
+                        <div class="char-gif-wrapper">
+                            <img src="_media/gifs-startscreen/yoshi_dance.gif" class="char-card-gif" alt="Yoshi">
+                        </div>
+                        <span class="char-name">YOSHI</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="iniciarGame()" class="start-button">START GAME</button>
+        </div>
+
+        <!-- Tela de Morte / Continuar Reestruturada -->
+        <div class="div-continuar" id="tela-morte">
+            <div class="death-panel">
+                <h2 id="death-title">Continuar?</h2>
+                <div class="death-options">
+                    <button onclick="tiraVida()" class="btn-yes">Sim</button>
+                    <button onclick="reiniciarJogoTotal()" class="btn-no">Não</button>
+                </div>
             </div>
         </div>
-        <div class="div-continuar">
-            <p>Continuar?</p>
-            <button onclick="tiraVida()">Sim</button>
-            <button onclick="window.location.reload()">Não</button>
-        </div>
+
+        <!-- Painel de Informações Premium -->
         <div class="info-board">
-            <div class="scores">
-                <span id="pontos" style="color: white;">0</span>
+            <div class="score-row">
+                <div class="score-box">
+                    <span class="score-label">PONTOS</span>
+                    <span id="pontos">0</span>
+                </div>
+                <div class="score-box record-box">
+                    <span class="score-label">RECORDE</span>
+                    <span id="recorde-pontos">0</span>
+                </div>
             </div>
-            <div class="lifes">
-                <img src="_media/corazon-pixel.gif" class="heart">
-                <img src="_media/corazon-pixel.gif" class="heart1">
-                <img src="_media/corazon-pixel.gif" class="heart2">
+            <div class="lifes-and-sound">
+                <div class="lifes">
+                    <img src="_media/corazon-pixel.gif" class="heart" alt="Coração 1">
+                    <img src="_media/corazon-pixel.gif" class="heart1" alt="Coração 2">
+                    <img src="_media/corazon-pixel.gif" class="heart2" alt="Coração 3">
+                </div>
+                <button id="btn-sound" onclick="toggleMute()" class="sound-button" title="Mudar som">
+                    <span id="sound-icon">🔊</span>
+                </button>
             </div>
         </div>
-        <img src="_imagens/clouds.png" class="clouds">
-        <img src="_media/pretin.gif" class="pretin" id="pretin">
-        <img src="_media/luta_epica.gif" class="goku_golpes">
-        <img src="_media/dragonair.gif" class="dragonair">
-        <img src="_media/dragon.gif" class="dragon">
-        <img src="_media/goku.gif" class="goku">
-        <img src="_media/gifs-principais/mario.gif" class="mario">
-        <img src="_imagens/pipe.png" class="pipe">
-        <img src="_imagens/coin.png" class="coin">
+
+        <!-- Elementos do Cenário -->
+        <img src="_imagens/clouds.png" class="clouds" alt="Nuvens">
+        <img src="_media/pretin.gif" class="pretin" id="pretin" alt="Pretin">
+        <img src="_media/luta_epica.gif" class="goku_golpes" alt="Efeito Goku">
+        <img src="_media/dragonair.gif" class="dragonair" alt="Dragonair">
+        <img src="_media/dragon.gif" class="dragon" alt="Dragon">
+        <img src="_media/goku.gif" class="goku" alt="Goku">
+        
+        <!-- O Personagem (Player) -->
+        <img src="_media/gifs-principais/mario.gif" class="mario" id="player" alt="Personagem Jogador">
+        
+        <!-- Obstáculos e Moedas -->
+        <img src="_imagens/pipe.png" class="pipe" alt="Cano">
+        <img src="_imagens/coin.png" class="coin" alt="Moeda">
+        
+        <!-- Estrelas no Céu -->
         <div class="sky-stars">
-            <img src="_imagens/stars2.png" class="stars">
-            <img src="_imagens/stars2.png" class="stars">
-            <img src="_imagens/stars2.png" class="stars">
+            <img src="_imagens/stars2.png" class="stars" alt="Estrela">
+            <img src="_imagens/stars2.png" class="stars" alt="Estrela">
+            <img src="_imagens/stars2.png" class="stars" alt="Estrela">
         </div>
     </div>
-
 </body>
 <script src="_javascript/script.js" defer></script>
 </html>
